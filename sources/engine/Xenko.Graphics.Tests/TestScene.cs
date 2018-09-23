@@ -79,7 +79,7 @@ namespace Xenko.Graphics.Tests
             var time = (float)gameTime.Total.TotalSeconds;
             cubeEntity.Transform.Rotation = Quaternion.RotationY(time) * Quaternion.RotationX(time * 0.5f);
 
-            //if(!ScreenShotAutomationEnabled)
+            //if (!ScreenShotAutomationEnabled)
             //    DrawCustomEffect();
         }
 
@@ -99,7 +99,7 @@ namespace Xenko.Graphics.Tests
         //    GraphicsDevice.DrawQuad(effectInstance.Effect, effectParameters);
         //}
 
-        public static void Main()
+        internal static void Main()
         {
             using (var game = new TestScene())
                 game.Run();

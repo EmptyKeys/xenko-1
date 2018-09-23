@@ -101,7 +101,7 @@ namespace Xenko.Engine.Tests
         {
             base.Update(time);
 
-            if(!ScreenShotAutomationEnabled)
+            if (!ScreenShotAutomationEnabled)
                 UpdateBall((float)time.Elapsed.TotalSeconds);
 
             if (Input.IsKeyPressed(Keys.D1))
@@ -165,7 +165,7 @@ namespace Xenko.Engine.Tests
             RunGameTest(new SpriteTestGame());
         }
 
-        public static void Main()
+        internal static void Main()
         {
             using (var testGame = new SpriteTestGame())
                 testGame.Run();

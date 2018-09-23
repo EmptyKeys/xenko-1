@@ -111,7 +111,7 @@ namespace Xenko.Graphics.Tests
             if (!isPaused)
                 timeSeconds += 1 / 60f; // frame dependent time (for unit tests)
 
-            if(!ScreenShotAutomationEnabled)
+            if (!ScreenShotAutomationEnabled)
                 DrawPrimitives();
         }
 
@@ -155,8 +155,8 @@ namespace Xenko.Graphics.Tests
                 primitive.Draw(GraphicsContext, simpleEffect);
             }
         }
-        
-        public static void Main()
+
+        internal static void Main()
         {
             using (var game = new TestGeometricPrimitives())
                 game.Run();

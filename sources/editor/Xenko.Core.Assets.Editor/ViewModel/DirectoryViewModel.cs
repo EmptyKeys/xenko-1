@@ -19,7 +19,7 @@ namespace Xenko.Core.Assets.Editor.ViewModel
     {
         private string name;
         private DirectoryBaseViewModel parent;
-        private static ThumbnailData FolderThumbnail;// = new Lazy<ThumbnailData>(GetFolderThumbnail, LazyThreadSafetyMode.PublicationOnly);
+        private static ThumbnailData FolderThumbnail;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DirectoryViewModel"/> class with a parent directory.
@@ -30,9 +30,7 @@ namespace Xenko.Core.Assets.Editor.ViewModel
         public DirectoryViewModel(string name, DirectoryBaseViewModel parent, bool canUndoRedoCreation)
             : base(parent.SafeArgument(nameof(parent)).Package)
         {
-            if (name == null) throw new ArgumentNullException(nameof(name));
-            string errorMessage;
-            this.name = name;
+            this.name = name ?? throw new ArgumentNullException(nameof(name));
             // Update property to make the directory dirty. The name must be already set here!
             if (canUndoRedoCreation)
             {
@@ -43,7 +41,7 @@ namespace Xenko.Core.Assets.Editor.ViewModel
                 this.parent = parent;
                 SetParent(null, parent);
             }
-            if (!IsValidName(name, out errorMessage)) throw new ArgumentException(errorMessage);
+            if (!IsValidName(name, out string errorMessage)) throw new ArgumentException(errorMessage);
             RenameCommand = new AnonymousCommand(ServiceProvider, () => IsEditing = true);
         }
 
@@ -94,15 +92,11 @@ namespace Xenko.Core.Assets.Editor.ViewModel
 
         private static ThumbnailData GetFolderThumbnail(IDispatcherService dispatcher)
         {
-            using (var ds = new DigestStream(new MemoryStream()))
-            {
-                var bytes = Resources.Images.folder;
-                ds.Write(bytes, 0, bytes.Length);
-                var objectId = ds.CurrentHash;
-                var data = new ThumbnailData(objectId, new MemoryStream(bytes));
-                data.PrepareForPresentation(dispatcher).Forget();
-                return data;
-            }
+            const string assetKey = "FolderIconAlfredo";
+            var objectId = ObjectId.FromObject(assetKey);
+            var data = new ResourceThumbnailData(objectId, assetKey);
+            data.PrepareForPresentation(dispatcher).Forget();
+            return data;
         }
 
         public override bool CanDelete(out string error)

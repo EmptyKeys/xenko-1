@@ -60,7 +60,7 @@ namespace Xenko.Graphics.Tests
 
             accumulatedSeconds += 1 / 60f;
 
-            if(!ScreenShotAutomationEnabled)
+            if (!ScreenShotAutomationEnabled)
                 DrawText();
         }
 
@@ -155,7 +155,7 @@ namespace Xenko.Graphics.Tests
             return "HanSans size " + size +" pixels. 漢字のサイズは" + size + "ピクセル。";
         }
 
-        public static void Main()
+        internal static void Main()
         {
             using (var game = new TestDynamicSpriteFontVarious())
                 game.Run();

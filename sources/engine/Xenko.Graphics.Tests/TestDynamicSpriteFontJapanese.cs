@@ -61,7 +61,7 @@ namespace Xenko.Graphics.Tests
         {
             base.Draw(gameTime);
 
-            if(!ScreenShotAutomationEnabled)
+            if (!ScreenShotAutomationEnabled)
                 DrawText();
         }
 
@@ -93,7 +93,7 @@ namespace Xenko.Graphics.Tests
             spriteBatch.End();
         }
 
-        public static void Main()
+        internal static void Main()
         {
             using (var game = new TestDynamicSpriteFontJapanese())
                 game.Run();

@@ -151,7 +151,7 @@ namespace Xenko.Graphics.Tests
             if (Input.IsKeyPressed(Keys.O))
                 displayedCubemap = outputCubemap;
 
-            if(Input.IsKeyPressed(Keys.S))
+            if (Input.IsKeyPressed(Keys.S))
                 SaveTexture(GraphicsDevice.Presenter.BackBuffer, "LambertianPrefilteredImageCross.png");
         }
 
@@ -172,7 +172,7 @@ namespace Xenko.Graphics.Tests
             RunGameTest(new TestLambertPrefilteringSH());
         }
 
-        public static void Main()
+        internal static void Main()
         {
             using (var game = new TestLambertPrefilteringSH())
                 game.Run();

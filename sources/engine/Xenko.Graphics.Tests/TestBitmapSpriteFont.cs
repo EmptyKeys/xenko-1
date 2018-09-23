@@ -43,7 +43,7 @@ namespace Xenko.Graphics.Tests
         {
             base.Draw(gameTime);
 
-            if(!ScreenShotAutomationEnabled)
+            if (!ScreenShotAutomationEnabled)
                 DrawSpriteFont();
         }
 
@@ -76,7 +76,7 @@ namespace Xenko.Graphics.Tests
                 SaveTexture(GraphicsDevice.Presenter.BackBuffer, "sprite-font-bitmap-test.png");
         }
 
-        public static void Main()
+        internal static void Main()
         {
             using (var game = new TestBitmapSpriteFont())
                 game.Run();

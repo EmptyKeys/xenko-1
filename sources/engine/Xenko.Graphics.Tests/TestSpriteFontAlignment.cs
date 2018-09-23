@@ -60,7 +60,7 @@ One blank line below
         {
             base.Draw(gameTime);
 
-            if(!ScreenShotAutomationEnabled)
+            if (!ScreenShotAutomationEnabled)
                 DrawText();
         }
 
@@ -105,7 +105,7 @@ One blank line below
             spriteBatch.End();
         }
 
-        public static void Main()
+        internal static void Main()
         {
             using (var game = new TestSpriteFontAlignment())
                 game.Run();

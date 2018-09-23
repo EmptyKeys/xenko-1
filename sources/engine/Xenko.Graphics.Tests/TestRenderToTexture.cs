@@ -65,7 +65,7 @@ namespace Xenko.Graphics.Tests
         {
             base.Draw(gameTime);
 
-            if(!ScreenShotAutomationEnabled)
+            if (!ScreenShotAutomationEnabled)
                 RenderToTexture();
 
             if (firstSave)
@@ -127,7 +127,7 @@ namespace Xenko.Graphics.Tests
             geometry.Draw(GraphicsContext, simpleEffect);
         }
 
-        public static void Main()
+        internal static void Main()
         {
             using (var game = new TestRenderToTexture())
                 game.Run();

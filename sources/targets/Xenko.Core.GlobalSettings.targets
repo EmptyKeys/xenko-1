@@ -1,4 +1,4 @@
-﻿<!-- Global settings used to configure the XenkoPlatform -->
+<!-- Global settings used to configure the XenkoPlatform -->
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <!-- Sdk settings -->
@@ -83,20 +83,14 @@
 
   <PropertyGroup Condition=" '$(XenkoPlatform)' == 'Linux' ">
     <!-- Limited version used by tools but that doesn't require installation of .NET on most computers (4.5.1 is default of many OS, 4.5.2/4.6 isn't) -->
-    <TargetFrameworkToolLow>net451</TargetFrameworkToolLow>
-    <TargetFrameworkTool>net462</TargetFrameworkTool>
-    <TargetFramework>net45</TargetFramework>
-    <TargetFrameworkVersionTool>v4.6.2</TargetFrameworkVersionTool>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <XenkoPlatformDefines>XENKO_PLATFORM_LINUX;XENKO_PLATFORM_UNIX;NET45</XenkoPlatformDefines>
     <NUnitLiteBinDir>$(XenkoCommonDependenciesDir)NUnitLite\net-4.0\</NUnitLiteBinDir>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(XenkoPlatform)' == 'macOS' ">
     <!-- Limited version used by tools but that doesn't require installation of .NET on most computers (4.5.1 is default of many OS, 4.5.2/4.6 isn't) -->
-    <TargetFrameworkToolLow>net451</TargetFrameworkToolLow>
-    <TargetFrameworkTool>net462</TargetFrameworkTool>
-    <TargetFramework>net45</TargetFramework>
-    <TargetFrameworkVersionTool>v4.6.2</TargetFrameworkVersionTool>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <XenkoPlatformDefines>XENKO_PLATFORM_MACOS;XENKO_PLATFORM_UNIX;NET45</XenkoPlatformDefines>
     <NUnitLiteBinDir>$(XenkoCommonDependenciesDir)NUnitLite\net-4.0\</NUnitLiteBinDir>
   </PropertyGroup>
@@ -194,6 +188,11 @@
     <AssemblyOriginatorKeyFile Condition="'$(XenkoOpenSourceSign)' != 'true'">$(SolutionDir)xenko.snk</AssemblyOriginatorKeyFile>
     <AssemblyOriginatorKeyFile Condition="'$(XenkoOpenSourceSign)' == 'true'">$(SolutionDir)xenko.public.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  
+  <!-- SourceLink -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Condition="'$(XenkoProjectType)' == 'CSharp'" Version="1.0.0-beta-63127-02" PrivateAssets="All"/>
+  </ItemGroup>
 
   <!-- Copy the libcore.a and libfreetype.a libraries to the project root directory for future native link.
        Note: this target is redefined in References.targets for user projects -->

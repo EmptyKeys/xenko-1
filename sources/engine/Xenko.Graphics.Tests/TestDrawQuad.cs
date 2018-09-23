@@ -36,7 +36,7 @@ namespace Xenko.Graphics.Tests
         {
             base.Draw(gameTime);
 
-            if(!ScreenShotAutomationEnabled)
+            if (!ScreenShotAutomationEnabled)
                 DrawQuad();
 
             if (firstSave)
@@ -66,7 +66,7 @@ namespace Xenko.Graphics.Tests
             //GraphicsDevice.DrawTexture(offlineTarget.Texture);
         }
 
-        public static void Main()
+        internal static void Main()
         {
             using (var game = new TestDrawQuad())
                 game.Run();

@@ -2,17 +2,8 @@
 // Distributed under the MIT license. See the LICENSE.md file in the project root for more information.
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using Xenko.Core.Extensions;
 using Xenko.Core.Mathematics;
-using Xenko.Core.Storage;
-using Xenko.Graphics;
-using Xenko.Rendering.Lights;
-using Xenko.Rendering.Shadows;
-using Xenko.VirtualReality;
-using Xenko.Core.Mathematics;
-using Xenko.Rendering.Images;
 
 namespace Xenko.Rendering.Compositing
 {
@@ -40,7 +31,7 @@ namespace Xenko.Rendering.Compositing
             // find the center eye position according to the scheme described here:
             // http://computergraphics.stackexchange.com/questions/1736/vr-and-frustum-culling
             // tangent of theta, where theta is FOV/2
-            var tangentThetaLeftEye  = Math.Abs(projectionLeftOfLeftEye / nearLeft);
+            var tangentThetaLeftEye = Math.Abs(projectionLeftOfLeftEye / nearLeft);
             var tangentThetaRightEye = Math.Abs(projectionRightOfRightEye / nearRight);
             var recession = interPupillaryDistance / (tangentThetaLeftEye + tangentThetaRightEye);
             // left offset (`A` on the diagram of above link):
@@ -57,7 +48,7 @@ namespace Xenko.Rendering.Compositing
 
             // Projection: Need to extend size to cover equivalent of both eyes
             var bottom = context.RenderView.NearClipPlane * (context.RenderView.Projection.M32 - 1.0f) / context.RenderView.Projection.M22;
-            var top    = context.RenderView.NearClipPlane * (context.RenderView.Projection.M32 + 1.0f) / context.RenderView.Projection.M22;
+            var top = context.RenderView.NearClipPlane * (context.RenderView.Projection.M32 + 1.0f) / context.RenderView.Projection.M22;
             // adjust proportionally the parameters (l, r, u, b are defined at near, so we use nears ratio):
             var nearsRatio = commonView.NearClipPlane / oldNear;
             // recreation from scratch:
